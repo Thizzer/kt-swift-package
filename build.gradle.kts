@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.thizzer.kt-swift-package"
-version = "1.0.0"
+version = "1.1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -34,6 +34,11 @@ val javadocJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
     dependsOn(dokkaHtml)
     archiveClassifier.set("javadoc")
     from(dokkaHtml.outputDirectory)
+}
+
+val sourcesJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
+    archiveClassifier.set("sources")
+    from(sourceSets["main"].allSource)
 }
 
 //
@@ -77,6 +82,7 @@ publishing {
             artifactId = "kt-swift-package"
             from(components["kotlin"])
             artifact(javadocJar)
+            artifact(sourcesJar)
             versionMapping {
                 usage("java-api") {
                     fromResolutionOf("runtimeClasspath")
@@ -87,10 +93,13 @@ publishing {
             }
 
             pom {
+                name.set("kt-swift-package")
+                description.set("Simple Kotlin library for generating Package.swift file content using DSL.")
+                url.set("https://github.com/thizzer/kt-swift-package")
                 licenses {
                     license {
                         name.set("MIT License")
-                        url.set("https://github.com/Thizzer/kt-swift-package/blob/master/LICENSE")
+                        url.set("https://github.com/thizzer/kt-swift-package/blob/main/LICENSE")
                     }
                     organization {
                         url.set("https://www.thizzer.com")
@@ -105,9 +114,9 @@ publishing {
                         }
                     }
                     scm {
-                        connection.set("scm:git:git://github.com/Thizzer/kt-swift-package.git")
-                        developerConnection.set("scm:git:ssh://github.com:Thizzer/kt-swift-package.git")
-                        url.set("https://github.com/Thizzer/kt-swift-package/tree/master")
+                        connection.set("scm:git:git://github.com/thizzer/kt-swift-package.git")
+                        developerConnection.set("scm:git:ssh://github.com:thizzer/kt-swift-package.git")
+                        url.set("https://github.com/thizzer/kt-swift-package/tree/main")
                     }
                 }
             }
