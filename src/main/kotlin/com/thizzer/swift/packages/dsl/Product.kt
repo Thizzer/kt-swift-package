@@ -2,12 +2,12 @@
  * This software may be modified and distributed under the terms
  * of the MIT license.  See the LICENSE file for details.
  */
-package com.thizzer.spkt.dsl
+package com.thizzer.swift.packages.dsl
 
-import com.thizzer.spkt.extensions.quoted
+import com.thizzer.swift.packages.extensions.quoted
 
 sealed class Product(val name: String, val targets: List<String> = listOf()) {
-    class Library(name: String, val type: Product.Library.Type? = null, targets: List<String> = listOf()) :
+    class Library(name: String, val type: Type? = null, targets: List<String> = listOf()) :
         Product(name, targets) {
         enum class Type {
             static, dynamic

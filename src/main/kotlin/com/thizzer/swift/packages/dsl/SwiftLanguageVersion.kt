@@ -1,6 +1,6 @@
-package com.thizzer.spkt.dsl
+package com.thizzer.swift.packages.dsl
 
-import com.thizzer.spkt.extensions.quoted
+import com.thizzer.swift.packages.extensions.quoted
 
 class SwiftLanguageVersion(val version: String? = null, val custom: Boolean = false) {
     companion object {

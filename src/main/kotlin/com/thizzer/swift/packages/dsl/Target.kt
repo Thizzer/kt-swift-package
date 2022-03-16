@@ -2,13 +2,13 @@
  * This software may be modified and distributed under the terms
  * of the MIT license.  See the LICENSE file for details.
  */
-package com.thizzer.spkt.dsl
+package com.thizzer.swift.packages.dsl
 
-import com.thizzer.spkt.extensions.quoted
+import com.thizzer.swift.packages.extensions.quoted
 
 sealed class Target(var name: String? = null, var path: String? = null) {
 
-    open class SimpleTarget(name: String? = null, path: String? = null) : com.thizzer.spkt.dsl.Target(name, path) {
+    open class SimpleTarget(name: String? = null, path: String? = null) : com.thizzer.swift.packages.dsl.Target(name, path) {
         private val excludes = mutableListOf<String>()
         private val sources = mutableListOf<String>()
         private val dependencies = TargetDependencyList()
@@ -486,7 +486,7 @@ sealed class Target(var name: String? = null, var path: String? = null) {
         path: String? = null,
         var pkgConfig: String? = null,
         var providers: PackageProviderList? = null
-    ) : com.thizzer.spkt.dsl.Target(name, path) {
+    ) : com.thizzer.swift.packages.dsl.Target(name, path) {
 
         class PackageProvider(val provider: String, val packages: List<String> = mutableListOf()) {
 
@@ -546,7 +546,7 @@ sealed class Target(var name: String? = null, var path: String? = null) {
 
     class BinaryTarget(
         name: String? = null, path: String? = null, var url: String? = null, var checksum: String? = null
-    ) : com.thizzer.spkt.dsl.Target(name, path) {
+    ) : com.thizzer.swift.packages.dsl.Target(name, path) {
         private val dependencies = TargetDependencyList()
 
         override fun toString(): String {
@@ -572,16 +572,16 @@ sealed class Target(var name: String? = null, var path: String? = null) {
 class TargetList : MutableList<Target> by mutableListOf() {
 
     fun target(
-        name: String? = null, path: String? = null, checksum: String? = null, configure: Target.Target.() -> Unit
+        name: String? = null, path: String? = null, configure: Target.Target.() -> Unit
     ): Target {
-        val target = Target.Target()
+        val target = Target.Target(name, path)
         target.configure()
         add(target)
         return target
     }
 
     fun testTarget(name: String? = null, path: String? = null, configure: Target.TestTarget.() -> Unit = {}): Target {
-        val target = Target.TestTarget()
+        val target = Target.TestTarget(name, path)
         target.configure()
         add(target)
         return target

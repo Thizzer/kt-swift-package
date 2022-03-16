@@ -2,9 +2,9 @@
  * This software may be modified and distributed under the terms
  * of the MIT license.  See the LICENSE file for details.
  */
-package com.thizzer.spkt.dsl
+package com.thizzer.swift.packages.dsl
 
-import com.thizzer.spkt.extensions.quoted
+import com.thizzer.swift.packages.extensions.quoted
 
 class TargetDependencyCondition(val platforms: PlatformList = PlatformList()) {
 
