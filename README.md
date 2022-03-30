@@ -1,8 +1,32 @@
 # Kotlin Swift Package (DSL)
 
-Simple Kotlin library for generating Package.swift file content using DSL.
+Simple Kotlin library for generating Package.swift.
 
-## Example
+### Maven
+
+```xml
+<dependency>
+	<groupId>com.thizzer.kt-swift-package</groupId>
+	<artifactId>kt-swift-package</artifactId>
+	<version>1.0.1</version>
+</dependency>
+```
+
+### Gradle
+
+#### Groovy
+
+```gradle
+implementation group: 'com.thizzer.kt-swift-package', name: 'kt-swift-package', version: '1.0.1'
+```
+
+#### Kotlin
+
+```kotlin
+implementation("com.thizzer.kt-swift-package:kt-swift-package:1.0.1")
+```
+
+## Usage
 
 ```kotlin
 val myLibraryPackage = swiftPackage {
